@@ -57,15 +57,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 #DATABASE_PATH = os.path.join(BASE_DIR, 'rango.db')
-#DB_USER = str(os.environ['rango_user'])
-#DB_USER_PASS = str(os.environ['rango_pass'])
+DB_USER = str(os.environ['RANGO_USER'])
+DB_USER_PASS = str(os.environ['RANGO_PASS'])
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'rango',
-        'USER': 'will',
-        'PASSWORD': 'willskill2014',
+        'USER': DB_USER,
+        'PASSWORD': DB_USER_PASS,
         'HOST': '',
         'PORT': '',
 #        'ENGINE': 'django.db.backends.sqlite3',
