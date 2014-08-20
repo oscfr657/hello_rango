@@ -1,0 +1,49 @@
+{% extends 'rango/base.html' %}
+
+{% block title %}{{ category_name }}{% endblock %}
+
+{% block body_block %}
+
+<div class="jumbotron">
+<h1>{{ category_name }}</h1>
+
+<div id="like_count">{{ category.likes }}</div>
+<div>people like {{category_name }}</div>
+<button class="btn btn-primary" id="like" data-catid="{{category.id}}">Like</button>
+
+{% if pages %}
+<ul>
+    {% for page in pages %}
+    <li> <a href="/rango/goto/?page_id={{ page.id }}">{{ page.title }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<strong>No pages in category.</strong> <br />
+{% endif %}
+<br />
+
+        {% if user.is_authenticated %}
+        <a href="/rango/category/{{ category_name_url }}/add_page/">Add a New Page</a>
+        {% endif %}
+
+
+        <form class="form-signin col-md-8" id="user_form" method="post" action="/rango/category/{{ category_name_url }}/">
+            {% csrf_token %}
+            <input type="text" size="50" name="query" value="" id="query" />
+            <input class="btn btn-primary" type="submit" name="submit" value="Search" />
+            <br />
+        </form>
+        {% if result_list %}
+        <div style="clear: both;" >
+            <ol>
+                {% for result in result_list %}
+                    <li>
+                        <strong><a href="{{ result.link }}">{{result.title}}</a> </strong>
+                        <em>{{ result.summary }}</em>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+        {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+
+
+{% block left_side_list %}
+        {% if categories %}
+        <h2>Categories</h2>
+            <ul>
+                {% for category in categories %}
+                <li> <a href="/rango/category/{{ category.url }}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+         {% endif %}
+{% endblock %}

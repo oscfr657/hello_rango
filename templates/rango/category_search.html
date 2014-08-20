@@ -1,0 +1,18 @@
+
+
+{% block left_side_search %}
+
+
+<ul class="nav nav-list">
+    {% if cat_search %}
+        {% for cat in cat_search %}
+            <li><a href="/rango/category/{{ cat.url }}">{{ cat.name }}</a></li>
+        {% endfor %}
+    {% else %}
+        <li>No categories at present.</li>
+   {% endif %}
+</ul>
+
+
+
+{% endblock %}
